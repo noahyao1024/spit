@@ -9,8 +9,7 @@ UPSTREAM_HOST=$4
 
 # Check if a valid port number was provided
 if [[ -z "$PORT" ]] || ! [[ "$PORT" =~ ^[0-9]+$ ]]; then
-  echo "Please provide a valid port number."
-  exit 1
+  PORT=80
 fi
 
 # Determine the operating system and architecture
@@ -22,7 +21,6 @@ PWD=$(pwd)
 CADDY_DIR=$PWD
 
 # Execute sed command
-echo "Executing sed command..."
 sed "s|PORT|$PORT|g" Caddyfile.template >Caddyfile.stage1
 sed "s|UPSTREAM_HOST|$UPSTREAM_HOST|g" Caddyfile.stage1 >Caddyfile.stage2
 sed "s|UPSTREAM_PATTERN|$UPSTREAM_PATTERN|g" Caddyfile.stage2 >Caddyfile.stage3
@@ -50,7 +48,7 @@ start_caddy() {
     echo "Caddy is already running."
   else
     if [ "$DAEMON" = true ]; then
-      nohup $CADDY_BINARY run &
+      nohup $CADDY_BINARY run 2>&1 >spit.log &
     else
       $CADDY_BINARY run
     fi
