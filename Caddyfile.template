@@ -9,5 +9,5 @@ localhost:PORT {
     file_server {
             root ./static
     }
-    reverse_proxy /UPSTREAM_PATTERN/* UPSTREAM_HOST
+    reverse_proxy /UPSTREAM_PATTERN* UPSTREAM_HOST
 }
