@@ -2,11 +2,14 @@
 
 # Quick start
 
-> Run a server on port 1080, and proxy some API to upstream server.
+Run a server on port 1080, and proxy some API to upstream server.
+
 `./run.sh start 1080 proxyapi 192.168.5.1:8080`
 
-> Run in daemon mode.
+Run in `Daemon` mode.
+
 `./run.sh daemon 1080 proxyapi 192.168.5.1:8080`
 
-> Stop daemon mode.
+Stop daemon mode.
+
 `./run.sh stop`
